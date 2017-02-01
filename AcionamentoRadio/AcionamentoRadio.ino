@@ -2,9 +2,8 @@
  *Acionamento de lampada via radio frequencia 
  *Autor Natan 
  */
-#define output OUTPUT
-#define input INPUT
- 
+ //#include   avr/wdt.h //biblioteca do Watchdog
+
 #define Olampada 13
 #define Otomada 12
 #define Oled 11
@@ -19,8 +18,8 @@
 #define DEBUG
 
 struct valor{
-    int estado  : 1;
-    int estado1 : 1;
+    int estado;
+    int estado1;
   };
 typedef struct valor valor_t;
 
@@ -31,18 +30,22 @@ pinMode (OUTPUT, Olampada);
 pinMode (OUTPUT,  Otomada);
 pinMode (OUTPUT,     Oled);
 
-pinMode (input, Ildr);
+pinMode (INPUT, Ildr);
 
 #ifdef DEBUG
 Serial.begin (9600);
 Serial.println("Config");
 #endif //DEBUG
-
+ //wdt_enable(WDTO_4S); //Função que ativa e altera o Watchdog(_1S _2S _4S _8S)tempos
 }
 
 void loop() {
+ //wdt_reset(); //diz que esta tudo ok
+ valor_t *estado;
+ estado = 1;
+  
 
- updateIO(1, 2);
+ updateIO(1, 1);
 }
 
 void updateIO (valor_t *estado, valor_t *estado1){
