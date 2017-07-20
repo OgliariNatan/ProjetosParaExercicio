@@ -1,6 +1,12 @@
-#include <SoftwareSerial.h>
+// Arduino || modulo GPS
+//   VCC   ||   VCC
+//    4    ||    TX
+//    3    ||    RX
+//   GND   ||   GND
 
-SoftwareSerial gps(4,3);
+
+#include <SoftwareSerial.h>
+SoftwareSerial gps(4,3);//RX,TX
 
 char dato=' ';
 
